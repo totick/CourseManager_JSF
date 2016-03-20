@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/WEB-INF/templates/template.xhtml">
+
+        <ui:define name="title">Students</ui:define>
+
+        <ui:define name="content">
+
+            <div class="container body-content">
+                <div class="row">
+                    <div class="col-xs-10 col-lg-12">
+
+                        <ui:include src="/views/addStudentModalForm.xhtml"> 
+                        </ui:include> 
+
+                        <ui:include src="/views/editStudentModalForm.xhtml"> 
+                        </ui:include> 
+
+
+                        <h1 class="bottomSpace30">Students</h1>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <fieldset>
+                                    <legend>Students list</legend>
+                                    <h:form id="sf">
+
+                                        <h:dataTable id="studentListTable" value="#{studentsBean.allStudents}" var="student" class="table table-striped table-bordered table-hover table-condensed">
+                                            <h:column>
+                                                <f:facet name="header">Id</f:facet>
+                                                    #{student.id}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">First name</f:facet>
+                                                    #{student.firstName}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Last name</f:facet>
+                                                    #{student.lastName}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Person id</f:facet>
+                                                    #{student.personnr}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Gender</f:facet>
+                                                    #{student.gender}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Email</f:facet>
+                                                    #{student.email}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">View</f:facet>
+                                                <h:commandLink action="#{studentsBean.setCurrentStudent(student)}" onmouseout="hideStudentInfo()">
+                                                    <f:ajax onevent="showStudentInfoPanel(event)" render="viewId viewFirstName viewLastName viewStreet viewCity viewPhoneNumber" />
+                                                    <i class="glyphicon glyphicon-eye-open"></i>
+                                                </h:commandLink>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Edit</f:facet>
+                                                <h:commandLink rendered="#{loginBean.role ne 'student' or loginBean.loggedInPerson.email eq student.email}" action="#{studentsBean.setCurrentStudent(student)}">
+                                                    <f:ajax
+                                                        render="esf:editFirstName esf:editLastName esf:editEmail esf:editGender esf:editPersonnr esf:editStreet esf:editCity esf:editPhoneNumber" />
+                                                    <f:passThroughAttribute name="data-toggle" value="modal" />
+                                                    <f:passThroughAttribute name="data-target" value="#editStudentModal" />
+                                                    <i class="glyphicon glyphicon-edit"></i>
+                                                </h:commandLink>
+                                            </h:column>
+                                            <h:column rendered="#{loginBean.role ne 'student'}">
+                                                <f:facet name="header">Remove</f:facet>
+                                                <h:commandLink action="#{studentsBean.removeStudent(student.id)}">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                </h:commandLink>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:form>
+                                    <c:if test="#{loginBean.role ne 'student'}">
+                                        <button type="button" name="add" class="btn btn-success" data-toggle="modal" data-target="#addStudentModal">Add new student</button>
+                                    </c:if>
+                                    <h:messages class="bigError" />
+                                </fieldset>
+
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-lg-offset-2 col-md-offset-2" style="margin-top:10%;">
+                                <figure>
+                                    <h:graphicImage height="326" width="326" class="img-rounded" alt="Lexicon is the best" library="img" name="symbol-lexicon.gif" />
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--                #{facesContext.getCurrentInstance().getExternalContext().getRequestHeaderMap().get("referer")}<br/>                   
+                #{view.viewId} -->
+            </div>
+
+            <div id="studentInfo" style="display: none;" class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Street: </b> <h:outputText
+                            id="viewStreet" value="#{studentsBean.currentStudent.street}" /></li>
+                    <li class="list-group-item"><b>City:</b> <h:outputText
+                            id="viewCity" value="#{studentsBean.currentStudent.city}" /></li>
+                    <li class="list-group-item"><b>Telephone:</b> <h:outputText
+                            id="viewPhoneNumber" value="#{studentsBean.currentStudent.phoneNumber}" />
+                    </li>
+                </ul>
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <head>
+        <title>Error page</title>
+        <meta http-equiv="refresh" content="3;url=#{request.contextPath}/login.xhtml" />
+        <link rel="shortcut icon" href="/CourseManager_JSF/resources/img/lexicon.ico" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+
+        <div class="container body-content">
+            <div class="row">
+                <div class="col-xs-10 col-lg-12">
+
+                    <h1 class="bottomSpace30">Expired error</h1>
+
+                    <p>The session has expired</p>
+                    <p>
+                        You will soon be redirected to the login page otherwise click 
+                        <a href="#{request.contextPath}/login.xhtml">here</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>
+

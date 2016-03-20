@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        <div class="row">
+            <header>
+                <div class="headerGroup">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="http://www.lexicon.se/"><h:graphicImage library="img" name="logo-lexicon.gif" /></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <h:form>
+                                <span class="topSpace30 alignmentRight">
+                                    <h:commandLink rendered="#{not empty loginBean.loggedInPerson}" action="#{loginBean.logout()}" value="Logout #{loginBean.loggedInPerson.email}" class="logoutLink" />
+                                </span>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </body>
+</html>
+
+

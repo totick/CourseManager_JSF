@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <title>Insert title here</title>
+    </h:head>
+    <body>
+        <nav id="sideNavParent" class="pdsa-sn-wrapper">
+
+            <ul>
+                <li>
+                    <h:link outcome="course" class="#{loginBean.role ne 'admin' ? 'unclickable' : ''}">
+                        <span class="visible-lg visible-md visible-sm #{view.viewId eq '/views/courses.xhtml' ? 'activeLink' : ''}"><strong>COURSES</strong></span>
+                        <i class="glyphicon glyphicon-list-alt visible-xs"></i>
+                    </h:link>
+                </li>
+                <li>
+                    <h:link outcome="teacher" class="#{loginBean.role eq 'student' ? 'unclickable' : ''}">
+                        <span class="visible-lg visible-md visible-sm #{view.viewId eq '/views/teachers.xhtml' ? 'activeLink' : ''}"><strong>TEACHERS</strong></span>
+                        <i class="glyphicon glyphicon-apple visible-xs"></i>
+                    </h:link>
+                </li>
+                <li>
+                    <h:link outcome="student">
+                        <span class="visible-lg visible-md visible-sm #{view.viewId eq '/views/students.xhtml' ? 'activeLink' : ''}"><strong>STUDENTS</strong></span>
+                        <i class="glyphicon glyphicon-user visible-xs"></i>
+                    </h:link>
+                </li>
+                <li>
+                    <h:link outcome="attendance">
+                        <span class="visible-lg visible-md visible-sm #{view.viewId eq '/views/semesterAttendance.xhtml' ? 'activeLink' : ''}"><strong>ATTENDANCE</strong></span>
+                        <i class="glyphicon glyphicon-list-alt visible-xs"></i>
+                    </h:link>
+                </li>
+            </ul>
+
+        </nav>
+    </body>
+</html>
+

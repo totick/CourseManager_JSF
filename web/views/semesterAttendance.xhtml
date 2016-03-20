@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/WEB-INF/templates/template.xhtml">
+
+        <ui:define name="title">Semester attendance</ui:define>
+
+        <ui:define name="content">
+
+            <div class="container body-content">
+                <div class="row bottomSpace100">
+
+                    <h1 class="bottomSpace30">Attendance</h1>
+
+                    <fieldset>
+                        <legend>Semester search</legend>
+                        <h:form class="form-inline">
+                            <div class="form-group">
+                                <label>Semester name:&nbsp;</label>                      
+                                <h:inputText id="theDatePicker" class="form-control" value="#{attendanceBean.searchSemesterCode}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Date: </label>
+                                <div class="input-group date">
+                                    <h:inputText class="form-control" value="#{attendanceBean.searchSemesterDate}" converter="dateConverter" />
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                </div>
+                            </div>
+                            &nbsp;<h:commandButton action="#{attendanceBean.searchSemester()}" value="Search semester" class="btn btn-success" />
+                        </h:form>
+                        <h:messages class="bigError" />
+                    </fieldset>
+                </div>
+
+                <div class="row">
+                    <fieldset>
+                        <legend>Attendance list for semester #{attendanceBean.searchSemesterCode} on date <h:outputText value="#{attendanceBean.searchSemesterDate}" converter="dateConverter" /></legend>
+                        <h:form>
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th><th>First name</th><th>Last name</th><th>Email</th><th>Attendance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="student" items="#{attendanceBean.semesterStudents}">
+
+                                        <tr class="studentRows #{attendanceBean.absenceList.get(student.id).absence ? 'danger' : ''}">
+                                            <td>#{student.id}</td>
+                                            <td>#{student.firstName}</td>
+                                            <td>#{student.lastName}</td>
+                                            <td>#{student.email}</td>
+                                            <td>
+                                                Abscent:
+                                                <c:choose>
+                                                    <c:when test="#{loginBean.role ne 'student'}">
+                                                        <h:selectBooleanCheckbox value="#{attendanceBean.absenceList.get(student.id).absence}" onchange="toggleAbsenceRowLook(event)">
+                                                            <f:ajax event="valueChange" listener="#{attendanceBean.changeAttendance(student.id, component)}" />
+                                                        </h:selectBooleanCheckbox>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <h:outputText value="#{attendanceBean.absenceList.get(student.id).absence}" />
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </h:form>
+                    </fieldset>
+                </div>
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
+
+
+</html>

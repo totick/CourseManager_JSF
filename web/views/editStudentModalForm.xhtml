@@ -1,0 +1,79 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- Modal -->
+    <div class="modal fade" id="editStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h:form id="esf">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Student</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <h:inputText id="editFirstName" value="#{studentsBean.currentStudent.firstName}" class="form-control">
+                                <f:passThroughAttribute name="data-rule-required" value="true" />
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <h:inputText id="editLastName" value="#{studentsBean.currentStudent.lastName}" class="form-control">
+                                <f:passThroughAttribute name="data-rule-required" value="true" />
+                            </h:inputText>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personnr">Personnr</label>
+                            <h:inputText id="editPersonnr" value="#{studentsBean.currentStudent.personnr}" class="form-control">
+                                <f:passThroughAttribute name="data-rule-required" value="true" />
+                            </h:inputText>
+                        </div>
+
+                        <h:selectOneRadio id="editGender" value="#{studentsBean.currentStudent.gender}">
+                            <f:selectItem itemValue="MALE" itemLabel="Male" />
+                            <f:selectItem itemValue="FEMALE" itemLabel="Female" />
+                            <f:passThroughAttribute name="data-rule-required" value="true" />
+                        </h:selectOneRadio>
+
+                        <div class="form-group">
+                            <label for="street">Street</label>
+                            <h:inputText id="editStreet" value="#{studentsBean.currentStudent.street}" class="form-control" />
+                        </div>  
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <h:inputText id="editCity" value="#{studentsBean.currentStudent.city}" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone number</label>
+                            <h:inputText id="editPhoneNumber" value="#{studentsBean.currentStudent.phoneNumber}" class="form-control">
+                                <f:passThroughAttribute name="data-rule-digits" value="true" />
+                            </h:inputText>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <h:inputText id="editEmail" value="#{studentsBean.currentStudent.email}" class="form-control">
+                                <f:passThroughAttribute name="data-rule-required" value="true" />
+                                <f:passThroughAttribute name="data-rule-email" value="true" />
+                            </h:inputText>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <h:commandButton id="teacherFormSubmit" action="#{studentsBean.editStudent()}" value="Edit student" class="btn btn-success" />
+
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+
+</ui:composition>
+

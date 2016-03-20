@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="views/editCourseSemesterModalForm.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="views/courseSemester.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="views/editTeacherModalForm.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="login.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="views/addCourseSemesterModalForm.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="views/addStudentModalForm.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="views/teachers.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="views/addTeacherModalForm.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="views/students.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="views/editStudentModalForm.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="views/editCourseModalForm.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="views/semesterAttendance.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="views/courses.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="views/addCourseModalForm.xhtml" x="650" y="150" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

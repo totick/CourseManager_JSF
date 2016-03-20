@@ -1,0 +1,61 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="addCourseSemesterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h:form id="acsf">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add new course semester</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="semesterCode">Semester name</label>
+                            <h:inputText value="#{coursesBean.newSemester.semesterCode}" class="form-control">
+                                <f:passThroughAttribute name="data-rule-required" value="true" />
+                            </h:inputText>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Start date: </label>
+                            <div class="input-group date">
+                                <h:inputText class="form-control" value="#{coursesBean.newSemester.startDate}" converter="dateConverter">
+                                    <f:passThroughAttribute name="data-rule-required" value="true" />
+                                    <f:validator validatorId="dateValidator_ISO8601" />
+                                </h:inputText>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>End date: </label>
+                            <div class="input-group date">
+                                <h:inputText class="form-control" value="#{coursesBean.newSemester.endDate}" converter="dateConverter">
+                                    <f:passThroughAttribute name="data-rule-required" value="true" />
+                                    <f:validator validatorId="dateValidator_ISO8601" />
+                                </h:inputText>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <h:commandButton id="teacherFormSubmit" action="#{coursesBean.addSemester()}" value="Add course semester" class="btn btn-success" />
+
+                    </div>
+
+
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+
+</ui:composition>
+

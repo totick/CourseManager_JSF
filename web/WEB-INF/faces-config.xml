@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    
+
+    
+    <navigation-rule>
+        <display-name>login</display-name>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>teacher</from-outcome>
+            <to-view-id>/views/teachers.xhtml</to-view-id>
+        </navigation-case> 
+          <navigation-case>
+            <from-outcome>student</from-outcome>
+            <to-view-id>/views/students.xhtml</to-view-id>
+        </navigation-case>
+                  <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>                    
+    </navigation-rule>
+    
+     <navigation-rule>
+        <from-view-id></from-view-id>
+        <navigation-case>
+            <from-outcome>student</from-outcome>
+            <to-view-id>/views/students.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>teacher</from-outcome>
+            <to-view-id>/views/teachers.xhtml</to-view-id>
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>course</from-outcome>
+            <to-view-id>/views/courses.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>semester</from-outcome>
+            <to-view-id>/views/courseSemester.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>attendance</from-outcome>
+            <to-view-id>/views/semesterAttendance.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>navigationError</from-outcome>
+            <to-view-id>/errorViews/navigationError.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+
+</faces-config>

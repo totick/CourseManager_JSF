@@ -1,0 +1,80 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+        
+        <!-- Modal -->
+    <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="myModalCourseLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <h:form id="ecf">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Course</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="courseCode">Code</label>
+                            <h:inputText id="editCode" value="#{coursesBean.currentCourse.code}" class="form-control">
+                                <f:passThroughAttribute name="data-rule-required" value="true" />
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="courseName">Name</label>
+                            <h:inputText id="editName" value="#{coursesBean.currentCourse.name}" class="form-control">
+                                <f:passThroughAttribute name="data-rule-required" value="true" />
+                            </h:inputText>
+                        </div>
+
+
+                        <h:selectOneRadio required="true" id="editLevel" value="#{coursesBean.currentCourse.level}">
+                            <f:selectItem itemValue="BASIC" itemLabel="Basic" />
+                            <f:selectItem itemValue="INTERMEDIATE" itemLabel="Intermediate" />
+                            <f:selectItem itemValue="ADVANCED" itemLabel="Advanced" />
+                        </h:selectOneRadio>
+
+                        <div class="form-group">
+                            <label for="courseLanguage">Language</label>
+                            <h:inputText id="editLanguage" value="#{coursesBean.currentCourse.language}" class="form-control">
+                                <f:passThroughAttribute name="data-rule-required" value="true" />
+                            </h:inputText>
+                        </div>  
+
+                        <div class="form-group">
+                            <label for="courseResponsible">Course responsible</label>
+                            <h:selectOneMenu id="editResponsible" value="#{coursesBean.courseResponsibleId}" class="form-control">
+                                <f:selectItem itemValue="#{coursesBean.courseResponsibleId}" itemLabel="#{coursesBean.currentCourse.courseResponsible.firstName.concat(' ').concat(coursesBean.currentCourse.courseResponsible.lastName)}" />
+       
+                                <f:selectItems value="#{coursesBean.availableCourseResponsibles}" var="teacher" itemLabel="#{teacher.firstName.concat(' ').concat(teacher.lastName)}" itemValue="#{teacher.id}"/>
+                            </h:selectOneMenu>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="courseDescription">Description</label>
+                            <h:inputTextarea id="editDescription" value="#{coursesBean.currentCourse.description}" cols="30" rows="10" class="form-control" />
+                        </div>
+
+                        <input id="courseId" name="courseId" type="hidden" value="" />
+                        <input id="courseFormUsed" name="formUsed" type="hidden" value="" />
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <h:commandButton id="teacherFormSubmit" action="#{coursesBean.editCourse()}" value="Edit course" class="btn btn-success" />
+                    </div>
+
+                </h:form>
+            </div>
+
+        </div>
+    </div>
+    
+</ui:composition>
+
+
+
